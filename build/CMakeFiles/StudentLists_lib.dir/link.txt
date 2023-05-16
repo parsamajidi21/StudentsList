@@ -1,0 +1,2 @@
+/usr/bin/ar qc libStudentLists_lib.a CMakeFiles/StudentLists_lib.dir/Src/Student_List.c.o
+/usr/bin/ranlib libStudentLists_lib.a

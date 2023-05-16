@@ -1,0 +1,1 @@
+/usr/bin/cc -rdynamic CMakeFiles/Student_List.dir/Src/StudentList.c.o CMakeFiles/Student_List.dir/Src/Student_List.c.o -o Student_List 

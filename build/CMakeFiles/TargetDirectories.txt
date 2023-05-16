@@ -1,0 +1,4 @@
+/home/parsa/Templates/my_Codes/C/StudentsList/build/CMakeFiles/StudentLists_lib.dir
+/home/parsa/Templates/my_Codes/C/StudentsList/build/CMakeFiles/Student_List.dir
+/home/parsa/Templates/my_Codes/C/StudentsList/build/CMakeFiles/edit_cache.dir
+/home/parsa/Templates/my_Codes/C/StudentsList/build/CMakeFiles/rebuild_cache.dir
