@@ -26,8 +26,8 @@ void Searching_student();
 void Sorting_student();
 void Saving_list_in_file();
 void Loading_file();
-void MergeSort(float **headRef);
-void frontbacksplit(StudentList* source,StudentList** frontref ,StudentList** backref);
+void MergeSort(StudentList** headRef);
+void frontbacksplit(StudentList* source, StudentList** frontref, StudentList** backref);
 StudentList* SortedMerge(StudentList* a, StudentList* b);
 
 

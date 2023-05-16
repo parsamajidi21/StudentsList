@@ -138,78 +138,69 @@ void Searching_student()
 /**************************************************************************************************************************/
 void Sorting_student()
 {
-    StudentList* start = (StudentList *) malloc(sizeof(StudentList));
-    start = first;
-    while(start != NULL)
-    {
-        MergeSort(&(start->Average));
-        start = start->next;
-    }
+    MergeSort(&first);
     Print_List();
-
 }
-/**************************************************************************************************************************/
-void MergeSort(float **headRef)
+
+void MergeSort(StudentList** headRef)
 {
-    StudentList* head = (*headRef);
+    StudentList* head = *headRef;
     StudentList* a;
     StudentList* b;
-    if((head == NULL) || (head->next == NULL))
-        return;
-    frontbacksplit(head,&a,&b);
+
+    if (head == NULL || head->next == NULL) {
+        exit(0);
+    }
+
+    // Split the list into two halves
+    frontbacksplit(head, &a, &b);
+
+    // Recursively sort the two halves
     MergeSort(&a);
     MergeSort(&b);
+
+    // Merge the sorted halves
     *headRef = SortedMerge(a, b);
 }
-/**************************************************************************************************************************/
-void frontbacksplit(StudentList* source,StudentList** frontref ,StudentList** backref)
+
+void frontbacksplit(StudentList* source, StudentList** frontref, StudentList** backref)
 {
-    StudentList* slow;
-    StudentList* fast;
-    if((source == NULL) || (source->next == NULL))
-    {
-        (*frontref) == source;
-        (*backref) == NULL;
+    StudentList* slow = source;
+    StudentList* fast = source->next;
+
+    while (fast != NULL && fast->next != NULL) {
+        fast = fast->next;
+        slow = slow->next;
+        fast = fast->next;
     }
-    else
-    {
-        slow = source;
-        fast = source->next;
-        while(fast != NULL)
-        {
-            fast = fast->next;
-            if(fast != NULL)
-            {
-                slow = slow->next;
-                fast = fast->next;
-            }
-        }
-        (*frontref) = source;
-        (*backref) = slow->next;
-        slow->next = NULL;
-    }
+
+    *frontref = source;
+    *backref = slow->next;
+    slow->next = NULL;
 }
-/**************************************************************************************************************************/
+
 StudentList* SortedMerge(StudentList* a, StudentList* b)
 {
-   StudentList* result = NULL;
+    StudentList* result = NULL;
 
-   if(a == NULL)
-        return(b);
-   else if(b == NULL)
-        return(a);
-   if(a->Average <= b->Average)
-   {
-       result = a;
-       result->next = SortedMerge(a->next,b);
-   }
-   else
-   {
-       result = b;
-       result->next = SortedMerge(a,b->next);
-   }
-   return(result);
+    if (a == NULL) {
+        return b;
+    } else if (b == NULL) {
+        return a;
+    }
+
+    // Compare the average values to merge the lists
+    if (a->Average <= b->Average) {
+        result = a;
+        result->next = SortedMerge(a->next, b);
+    } else {
+        result = b;
+        result->next = SortedMerge(a, b->next);
+    }
+
+    return result;
 }
+
 
 /**************************************************************************************************************************/
 /// @brief Saves the list in a .txt file
